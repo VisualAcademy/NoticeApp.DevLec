@@ -1,4 +1,4 @@
-﻿--[1] Table: Notice(공지사항) 테이블
+﻿--[1] Table: Notices(공지사항) 테이블
 CREATE TABLE [dbo].[Notices]
 (
 	[Id] INT NOT NULL PRIMARY KEY Identity(1, 1),		-- Serial Number
