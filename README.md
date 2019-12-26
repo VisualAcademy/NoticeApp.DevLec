@@ -3,6 +3,8 @@
 
 ## 01. NoticeApp 솔루션 생성 및 NoticeApp.SqlServer 이름의 SQL Server 데이터베이스 프로젝트 생성 후 GitHub에 게시
 
+기본형 게시판을 확장하여 공지사항 앱을 만들기 시작합니다. 데이터베이스 프로젝트를 만들고 테이블을 생성합니다.
+
 **공지사항**, __NoticeApp__, **Notices**
 
 ## 02. Notices 테이블과 일대일로 매핑되는 Notice 모델 클래스 생성
