@@ -28,9 +28,12 @@
 ## 05. NoticeRepositoryAsyncTest_MSTest 프로젝트 생성 및 AddAsync 메서드 테스트
 
 공식과같은 방식으로 데이터를 입력하는 Add 메서드를 작성하고 MSTest 프로젝트를 생성하고 테스트 메서드를 작성합니다.
+
 **입력**, __AddAsync__, **AddAsyncTest**
 
 ## 06. GetAll 메서드 코드 구현 및 테스트 코드 생성 후 테스트 완료
+
+전체 데이터를 출력하는 GetAll 메서드를 작성하고 이를 테스트하는 메서드를 작성합니다.
 
 **출력**, __GetAll__, **GetAllTest**
 
