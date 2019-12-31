@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace NoticeApp.Models.Tests
 {
+    /// <summary>
+    /// [7] Test Class
+    /// </summary>
     [TestClass]
     public class NoticeRepositoryAsyncTest
     {
