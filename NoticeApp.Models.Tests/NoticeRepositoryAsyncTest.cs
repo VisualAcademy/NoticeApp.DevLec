@@ -136,10 +136,10 @@ namespace NoticeApp.Models.Tests
                 int pageSize = 1;
 
                 var repository = new NoticeRepositoryAsync(context, factory);
-                var articleSet = await repository.GetAllAsync(pageIndex, pageSize);
+                var noticesSet = await repository.GetAllAsync(pageIndex, pageSize);
 
-                var firstName = articleSet.Records.FirstOrDefault()?.Name;
-                var recordCount = articleSet.TotalRecords;
+                var firstName = noticesSet.Records.FirstOrDefault()?.Name;
+                var recordCount = noticesSet.TotalRecords;
 
                 Assert.AreEqual("[3] 백두산", firstName);
                 Assert.AreEqual(2, recordCount);

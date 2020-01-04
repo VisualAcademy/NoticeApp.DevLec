@@ -22,7 +22,7 @@ namespace NoticeApp.Models
             this._logger = loggerFactory.CreateLogger(nameof(NoticeRepositoryAsync));
         }
 
-        // 입력
+        //[6][1] 입력
         public async Task<Notice> AddAsync(Notice model)
         {
             _context.Notices.Add(model);
@@ -39,7 +39,7 @@ namespace NoticeApp.Models
             return model; 
         }
 
-        // 출력
+        //[6][2] 출력
         public async Task<List<Notice>> GetAllAsync()
         {
             return await _context.Notices.OrderByDescending(m => m.Id)
@@ -47,7 +47,7 @@ namespace NoticeApp.Models
                 .ToListAsync(); 
         }
 
-        // 상세
+        //[6][3] 상세
         public async Task<Notice> GetByIdAsync(int id)
         {
             return await _context.Notices
@@ -55,7 +55,7 @@ namespace NoticeApp.Models
                 .SingleOrDefaultAsync(m => m.Id == id);
         }
 
-        // 수정
+        //[6][4] 수정
         public async Task<bool> EditAsync(Notice model)
         {
             _context.Notices.Attach(model);
@@ -73,7 +73,7 @@ namespace NoticeApp.Models
             return false; 
         }
 
-        // 삭제
+        //[6][5] 삭제
         public async Task<bool> DeleteAsync(int id)
         {
             var model = await _context.Notices.SingleOrDefaultAsync(m => m.Id == id);
@@ -91,7 +91,7 @@ namespace NoticeApp.Models
             return false; 
         }
 
-        // 페이징
+        //[6][6] 페이징
         public async Task<PagingResult<Notice>> GetAllAsync(int pageIndex, int pageSize)
         {
             var totalRecords = await _context.Notices.CountAsync();
