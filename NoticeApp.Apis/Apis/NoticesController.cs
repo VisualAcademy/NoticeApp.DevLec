@@ -2,12 +2,14 @@
 using Microsoft.Extensions.Logging;
 using NoticeApp.Models;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace NoticeApp.Apis.Controllers
 {
     [Produces("application/json")]
     [Route("api/Notices")]
+    [ApiController]
     public class NoticesController : ControllerBase
     {
         private readonly INoticeRepositoryAsync _repository;
@@ -63,6 +65,10 @@ namespace NoticeApp.Apis.Controllers
             try
             {
                 var notices = await _repository.GetAllAsync();
+                if (!notices.Any())
+                {
+                    return new NoContentResult(); // 참고용 코드
+                }
                 return Ok(notices);
             }
             catch (Exception e)
