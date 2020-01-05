@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{F99C11
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoticeApp.Apis", "NoticeApp.Apis\NoticeApp.Apis.csproj", "{0D8DDA08-C994-4601-8A2D-925C117128FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoticeApp", "NoticeApp\NoticeApp.csproj", "{D971FE6F-DEEB-4278-989D-E1EE925FF91A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,12 +46,17 @@ Global
 		{0D8DDA08-C994-4601-8A2D-925C117128FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D8DDA08-C994-4601-8A2D-925C117128FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D8DDA08-C994-4601-8A2D-925C117128FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D971FE6F-DEEB-4278-989D-E1EE925FF91A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D971FE6F-DEEB-4278-989D-E1EE925FF91A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D971FE6F-DEEB-4278-989D-E1EE925FF91A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D971FE6F-DEEB-4278-989D-E1EE925FF91A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0D8DDA08-C994-4601-8A2D-925C117128FD} = {14F527D8-73EF-4DF9-9FC7-05607FD41EFA}
+		{D971FE6F-DEEB-4278-989D-E1EE925FF91A} = {F99C11EC-42A0-4235-AEF1-96D15D006764}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E0C4E0B7-258D-4CEF-8408-9FDC6A0F329E}
