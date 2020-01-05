@@ -24,9 +24,9 @@ namespace NoticeApp.Apis.Controllers
         // 입력
         // POST api/Notices
         [HttpPost]
-        [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody]Notice model)
         {
+            // model.Id = 0
             var tmpModel = new Notice();
             tmpModel.Name = model.Name;
             tmpModel.Title = model.Title;
