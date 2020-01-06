@@ -18,10 +18,16 @@ namespace NoticeApp.Pages.Notices
         [Inject]
         public NavigationManager NavigationManagerReference { get; set; }
 
+        /// <summary>
+        /// EditorForm에 대한 참조: 모달로 글쓰기 또는 수정하기
+        /// </summary>
         public EditorForm EditorFormReference { get; set; }
 
+        /// <summary>
+        /// DeleteDialog에 대한 참조: 모달로 항목 삭제하기 
+        /// </summary>
         public DeleteDialog DeleteDialogReference { get; set; }
-
+        
         protected List<Notice> models;
 
         protected Notice model = new Notice();
