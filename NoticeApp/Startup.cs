@@ -53,7 +53,7 @@ namespace NoticeApp
         {
             // NoticeAppDbContext.cs Inject: New DbContext Add
             services.AddEntityFrameworkSqlServer().AddDbContext<NoticeAppDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
 
             // INoticeRepositoryAsync.cs Inject: DI Container에 서비스(리포지토리) 등록 
             services.AddTransient<INoticeRepositoryAsync, NoticeRepositoryAsync>();

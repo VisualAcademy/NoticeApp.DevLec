@@ -9,6 +9,9 @@ namespace NoticeApp.Pages.Notices
 {
     public partial class Manage
     {
+        [Parameter]
+        public int ParentId { get; set; } = 0;
+
         [Inject]
         public INoticeRepositoryAsync NoticeRepositoryAsyncReference { get; set; }
 
@@ -21,7 +24,12 @@ namespace NoticeApp.Pages.Notices
 
         protected List<Notice> models;
 
-        protected Notice model = new Notice(); 
+        protected Notice model = new Notice();
+
+        /// <summary>
+        /// 공지사항으로 올리기 폼을 띄울건지 여부 
+        /// </summary>
+        public bool IsInlineDialogShow { get; set; } = false; 
 
         protected DulPager.DulPagerBase pager = new DulPager.DulPagerBase()
         {
@@ -38,10 +46,19 @@ namespace NoticeApp.Pages.Notices
 
         private async Task DisplayData()
         {
-            //await Task.Delay(3000);
-            var resultsSet = await NoticeRepositoryAsyncReference.GetAllAsync(pager.PageIndex, pager.PageSize);
-            pager.RecordCount = resultsSet.TotalRecords;
-            models = resultsSet.Records.ToList();
+            if (ParentId == 0)
+            {
+                //await Task.Delay(3000);
+                var resultsSet = await NoticeRepositoryAsyncReference.GetAllAsync(pager.PageIndex, pager.PageSize);
+                pager.RecordCount = resultsSet.TotalRecords;
+                models = resultsSet.Records.ToList();
+            }
+            else
+            {
+                var resultsSet = await NoticeRepositoryAsyncReference.GetAllByParentIdAsync(pager.PageIndex, pager.PageSize, ParentId);
+                pager.RecordCount = resultsSet.TotalRecords;
+                models = resultsSet.Records.ToList();
+            }
 
             StateHasChanged();
         }
@@ -78,7 +95,13 @@ namespace NoticeApp.Pages.Notices
         protected void DeleteBy(Notice model)
         {
             this.model = model;
-            DeleteDialogReference.Show();    
+            DeleteDialogReference.Show();
+        }
+
+        protected void ToggleBy(Notice model)
+        {
+            this.model = model;
+            IsInlineDialogShow = true; 
         }
 
         protected async void CreateOrEdit()
@@ -92,6 +115,22 @@ namespace NoticeApp.Pages.Notices
             await NoticeRepositoryAsyncReference.DeleteAsync(this.model.Id);
             DeleteDialogReference.Hide();
             this.model = new Notice(); 
+            await DisplayData();
+        }
+
+        protected void ToggleClose()
+        {
+            IsInlineDialogShow = false;
+            this.model = new Notice(); 
+        }
+
+        protected async void ToggleClick()
+        {
+            this.model.IsPinned = (this.model?.IsPinned == true) ? false : true; 
+
+            await NoticeRepositoryAsyncReference.EditAsync(this.model);
+            IsInlineDialogShow = false; 
+            this.model = new Notice();
             await DisplayData();
         }
     }
