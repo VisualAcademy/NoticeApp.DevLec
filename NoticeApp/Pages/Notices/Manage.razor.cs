@@ -94,6 +94,7 @@ namespace NoticeApp.Pages.Notices
         protected void EditBy(Notice model)
         {
             EditorFormTitle = "EDIT";
+            this.model = new Notice();
             this.model = model; 
             EditorFormReference.Show();
         }
@@ -113,6 +114,7 @@ namespace NoticeApp.Pages.Notices
         protected async void CreateOrEdit()
         {
             EditorFormReference.Hide();
+            this.model = new Notice();
             await DisplayData();            
         }
 

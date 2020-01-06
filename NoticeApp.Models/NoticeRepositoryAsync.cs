@@ -25,10 +25,9 @@ namespace NoticeApp.Models
         //[6][1] 입력
         public async Task<Notice> AddAsync(Notice model)
         {
-            _context.Notices.Add(model);
-
             try
             {
+                _context.Notices.Add(model);
                 await _context.SaveChangesAsync();
             }
             catch (Exception e)
@@ -58,11 +57,10 @@ namespace NoticeApp.Models
         //[6][4] 수정
         public async Task<bool> EditAsync(Notice model)
         {
-            _context.Notices.Attach(model);
-            _context.Entry(model).State = EntityState.Modified;
-
             try
             {
+                _context.Notices.Attach(model);
+                _context.Entry(model).State = EntityState.Modified;
                 return (await _context.SaveChangesAsync() > 0 ? true : false);
             }
             catch (Exception e)
@@ -77,10 +75,10 @@ namespace NoticeApp.Models
         public async Task<bool> DeleteAsync(int id)
         {
             var model = await _context.Notices.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Remove(model);
 
             try
             {
+                _context.Remove(model);
                 return (await _context.SaveChangesAsync() > 0 ? true : false);
             }
             catch (Exception e)
