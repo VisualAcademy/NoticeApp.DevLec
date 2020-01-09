@@ -149,5 +149,22 @@ namespace NoticeApp.Models
 
             return false; 
         }
+
+        // 검색
+        public async Task<PagingResult<Notice>> SearchAllAsync(int pageIndex, int pageSize, string searchQuery)
+        {
+            var totalRecords = await _context.Notices
+                .Where(m => m.Name.Contains(searchQuery) || m.Title.Contains(searchQuery) || m.Title.Contains(searchQuery))
+                .CountAsync();
+            var models = await _context.Notices
+                .Where(m => m.Name.Contains(searchQuery) || m.Title.Contains(searchQuery) || m.Title.Contains(searchQuery))
+                .OrderByDescending(m => m.Id)
+                //.Include(m => m.NoticesComments)
+                .Skip(pageIndex * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PagingResult<Notice>(models, totalRecords);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using NoticeApp.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,9 @@ namespace NoticeApp.Pages.Notices
         [Inject]
         public NavigationManager NavigationManagerReference { get; set; }
 
+        [Inject]
+        public IJSRuntime JSRuntime { get; set; }
+
         protected List<Notice> models;
 
         protected DulPager.DulPagerBase pager = new DulPager.DulPagerBase() 
@@ -26,13 +30,27 @@ namespace NoticeApp.Pages.Notices
 
         protected override async Task OnInitializedAsync()
         {
-            await DisplayData();
+            if (this.searchQuery != "")
+            {
+                await DisplayData();
+            }
+            else
+            {
+                await SearchData(); 
+            }
         }
 
         private async Task DisplayData()
         {
             //await Task.Delay(3000);
             var resultsSet = await NoticeRepositoryAsyncReference.GetAllAsync(pager.PageIndex, pager.PageSize);
+            pager.RecordCount = resultsSet.TotalRecords;
+            models = resultsSet.Records.ToList();
+        }
+
+        private async Task SearchData()
+        {
+            var resultsSet = await NoticeRepositoryAsyncReference.SearchAllAsync(pager.PageIndex, pager.PageSize, this.searchQuery);
             pager.RecordCount = resultsSet.TotalRecords;
             models = resultsSet.Records.ToList();
         }
@@ -47,7 +65,25 @@ namespace NoticeApp.Pages.Notices
             pager.PageIndex = pageIndex;
             pager.PageNumber = pageIndex + 1;
 
-            await DisplayData();
+            if (this.searchQuery == "")
+            {
+                await DisplayData();
+            }
+            else
+            {
+                await SearchData();
+            }
+
+            StateHasChanged();
+        }
+
+        private string searchQuery;
+
+        protected async void Search(string query)
+        {
+            this.searchQuery = query;
+
+            await SearchData();
 
             StateHasChanged();
         }
