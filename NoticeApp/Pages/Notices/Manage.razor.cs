@@ -47,7 +47,14 @@ namespace NoticeApp.Pages.Notices
 
         protected override async Task OnInitializedAsync()
         {
-            await DisplayData();
+            if (this.searchQuery != "")
+            {
+                await DisplayData();
+            }
+            else
+            {
+                await SearchData();
+            }
         }
 
         private async Task DisplayData()
@@ -69,6 +76,22 @@ namespace NoticeApp.Pages.Notices
             StateHasChanged();
         }
 
+        private async Task SearchData()
+        {
+            if (ParentId == 0)
+            {
+                var resultsSet = await NoticeRepositoryAsyncReference.SearchAllAsync(pager.PageIndex, pager.PageSize, this.searchQuery);
+                pager.RecordCount = resultsSet.TotalRecords;
+                models = resultsSet.Records.ToList();
+            }
+            else
+            {
+                var resultsSet = await NoticeRepositoryAsyncReference.SearchAllByParentIdAsync(pager.PageIndex, pager.PageSize, this.searchQuery, ParentId);
+                pager.RecordCount = resultsSet.TotalRecords;
+                models = resultsSet.Records.ToList();
+            }
+        }
+
         protected void NameClick(int id)
         {
             NavigationManagerReference.NavigateTo($"/Notices/Details/{id}");
@@ -79,7 +102,16 @@ namespace NoticeApp.Pages.Notices
             pager.PageIndex = pageIndex;
             pager.PageNumber = pageIndex + 1;
 
-            await DisplayData();
+            if (this.searchQuery == "")
+            {
+                await DisplayData();
+            }
+            else
+            {
+                await SearchData();
+            }
+
+            StateHasChanged();
         }
 
         public string EditorFormTitle { get; set; } = "CREATE";
@@ -140,6 +172,17 @@ namespace NoticeApp.Pages.Notices
             IsInlineDialogShow = false; 
             this.model = new Notice();
             await DisplayData();
+        }
+
+        private string searchQuery;
+
+        protected async void Search(string query)
+        {
+            this.searchQuery = query;
+
+            await SearchData();
+
+            StateHasChanged();
         }
     }
 }

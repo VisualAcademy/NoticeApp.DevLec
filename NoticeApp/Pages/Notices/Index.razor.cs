@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
 using NoticeApp.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +13,6 @@ namespace NoticeApp.Pages.Notices
 
         [Inject]
         public NavigationManager NavigationManagerReference { get; set; }
-
-        [Inject]
-        public IJSRuntime JSRuntime { get; set; }
 
         protected List<Notice> models;
 
