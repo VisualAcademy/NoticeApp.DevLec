@@ -174,7 +174,7 @@ namespace NoticeApp.Pages.Notices
             await DisplayData();
         }
 
-        private string searchQuery;
+        private string searchQuery = "";
 
         protected async void Search(string query)
         {
