@@ -13,10 +13,7 @@ namespace NoticeApp.Pages.Notices.Components
         /// <summary>
         /// 폼 보이기 
         /// </summary>
-        public void Show()
-        {
-            IsShow = true;
-        }
+        public void Show() => IsShow = true;
 
         /// <summary>
         /// 폼 닫기
