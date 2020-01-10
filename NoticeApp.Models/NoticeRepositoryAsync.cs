@@ -182,5 +182,32 @@ namespace NoticeApp.Models
 
             return new PagingResult<Notice>(models, totalRecords);
         }
+
+        public async Task<SortedList<int, double>> GetMonthlyCreateCountAsync()
+        {
+            SortedList<int, double> createCounts = new SortedList<int, double>();
+
+            // 1월부터 12월까지 0.0으로 초기화
+            for (int i = 1; i <= 12; i++)
+            {
+                createCounts[i] = 0.0; 
+            }
+
+            for (int i = 0; i < 12; i++)
+            {
+                // 현재 달부터 12개월 전까지 반복
+                var current = DateTime.Now.AddMonths(-i);
+                var cnt = _context.Notices.AsEnumerable().Where(
+                    m => m.Created != null
+                    &&
+                    Convert.ToDateTime(m.Created).Month == current.Month
+                    &&
+                    Convert.ToDateTime(m.Created).Year == current.Year
+                ).ToList().Count();
+                createCounts[current.Month] = cnt;  
+            }
+
+            return await Task.FromResult(createCounts);
+        }
     }
 }
