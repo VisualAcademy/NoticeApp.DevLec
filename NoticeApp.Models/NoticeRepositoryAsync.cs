@@ -74,10 +74,10 @@ namespace NoticeApp.Models
         //[6][5] 삭제
         public async Task<bool> DeleteAsync(int id)
         {
-            var model = await _context.Notices.SingleOrDefaultAsync(m => m.Id == id);
-
+            //var model = await _context.Notices.SingleOrDefaultAsync(m => m.Id == id);
             try
             {
+                var model = await _context.Notices.FindAsync(id);
                 _context.Remove(model);
                 return (await _context.SaveChangesAsync() > 0 ? true : false);
             }
