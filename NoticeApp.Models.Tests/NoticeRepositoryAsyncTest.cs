@@ -31,6 +31,8 @@ namespace NoticeApp.Models.Tests
             //[1] AddAsync() Method Test
             using (var context = new NoticeAppDbContext(options))
             {
+                context.Database.EnsureCreated(); // 데이터베이스가 만들어져 있는지 확인
+
                 //[A] Arrange
                 var repository = new NoticeRepositoryAsync(context, factory);
                 var model = new Notice { Name = "[1] 관리자", Title = "공지사항입니다.", Content = "내용입니다." };
