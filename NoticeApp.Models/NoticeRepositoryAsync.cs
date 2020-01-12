@@ -170,7 +170,7 @@ namespace NoticeApp.Models
         public async Task<PagingResult<Notice>> SearchAllByParentIdAsync(int pageIndex, int pageSize, string searchQuery, int parentId)
         {
             var totalRecords = await _context.Notices.Where(m => m.ParentId == parentId)
-                .Where(m => m.Name.Contains(searchQuery) || m.Title.Contains(searchQuery) || m.Title.Contains(searchQuery))
+                .Where(m => EF.Functions.Like(m.Name, $"%{searchQuery}%") || m.Title.Contains(searchQuery) || m.Title.Contains(searchQuery))
                 .CountAsync();
             var models = await _context.Notices.Where(m => m.ParentId == parentId)
                 .Where(m => m.Name.Contains(searchQuery) || m.Title.Contains(searchQuery) || m.Title.Contains(searchQuery))
