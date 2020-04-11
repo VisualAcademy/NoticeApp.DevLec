@@ -64,12 +64,12 @@ namespace NoticeApp.Apis.Controllers
         {
             try
             {
-                var notices = await _repository.GetAllAsync();
-                if (!notices.Any())
+                var models = await _repository.GetAllAsync();
+                if (!models.Any())
                 {
                     return new NoContentResult(); // 참고용 코드
                 }
-                return Ok(notices);
+                return Ok(models);
             }
             catch (Exception e)
             {
