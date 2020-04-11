@@ -1,16 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using NoticeApp.Models;
 
 namespace NoticeApp.Apis
@@ -34,7 +27,7 @@ namespace NoticeApp.Apis
             //[CORS][1][1] 기본: 모두 허용
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAnyOrigin", 
+                options.AddPolicy("AllowAnyOrigin",
                     builder => builder
                     .AllowAnyOrigin()
                     .AllowAnyMethod()
@@ -64,7 +57,7 @@ namespace NoticeApp.Apis
         private void AddDependencyInjectionContainerForNoticeApp(IServiceCollection services)
         {
             // NoticeAppDbContext.cs Inject: New DbContext Add
-            services.AddEntityFrameworkSqlServer().AddDbContext<NoticeAppDbContext>(options => 
+            services.AddEntityFrameworkSqlServer().AddDbContext<NoticeAppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // INoticeRepositoryAsync.cs Inject: DI Container에 서비스(리포지토리) 등록 
