@@ -60,7 +60,7 @@
     <Folder Include="dbo\Tables" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\Notices.sql" />
+    <Build Include="dbo\Tables\01_Notices.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NoticeApp.SqlServer.publish.xml" />
