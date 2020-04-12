@@ -36,6 +36,10 @@ namespace NoticeApp.Pages.Notices
             }
         }
 
+        /// <summary>
+        /// NoticeApp - UploadApp - ReplyApp을 거쳐 여기 코드가 더 정리됩니다.
+        /// </summary>
+        /// <returns></returns>
         private async Task DisplayData()
         {
             //await Task.Delay(3000);
