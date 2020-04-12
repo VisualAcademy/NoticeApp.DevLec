@@ -128,7 +128,7 @@ namespace NoticeApp.Pages.Notices
         protected void ShowEditorForm()
         {
             EditorFormTitle = "CREATE";
-            this.model = new Notice();
+            this.model = new Notice(); // 모델 초기화
             EditorFormReference.Show();
         } 
         #endregion
@@ -136,7 +136,7 @@ namespace NoticeApp.Pages.Notices
         protected void EditBy(Notice model)
         {
             EditorFormTitle = "EDIT";
-            this.model = new Notice();
+            this.model = new Notice(); // 모델 초기화
             this.model = model; 
             EditorFormReference.Show();
         }
@@ -153,6 +153,10 @@ namespace NoticeApp.Pages.Notices
             IsInlineDialogShow = true; 
         }
 
+
+        /// <summary>
+        /// 모델 초기화 및 모달 폼 닫기
+        /// </summary>
         protected async void CreateOrEdit()
         {
             EditorFormReference.Hide();
