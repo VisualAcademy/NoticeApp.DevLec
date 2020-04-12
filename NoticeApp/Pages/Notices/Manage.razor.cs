@@ -114,14 +114,24 @@ namespace NoticeApp.Pages.Notices
             StateHasChanged();
         }
 
+        #region Properties
+        /// <summary>
+        /// 글쓰기 또는 수정하기 폼의 제목에 전달할 문자열(태그 포함 가능)
+        /// </summary>
         public string EditorFormTitle { get; set; } = "CREATE";
+        #endregion
 
+        #region Event Handlers
+        /// <summary>
+        /// 글쓰기 모달 폼 띄우기 
+        /// </summary>
         protected void ShowEditorForm()
         {
             EditorFormTitle = "CREATE";
-            this.model = new Notice(); 
+            this.model = new Notice();
             EditorFormReference.Show();
-        }
+        } 
+        #endregion
 
         protected void EditBy(Notice model)
         {
