@@ -33,6 +33,7 @@ namespace NoticeApp.Models
         /// <summary>
         /// 제목
         /// </summary>
+        [Column(TypeName = "NVarChar(255)")]
         public string Title { get; set; }
 
         /// <summary>
